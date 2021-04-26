@@ -1,0 +1,26 @@
+{
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"extends": ["react-app", "prettier"],
+	"parserOptions": {
+		"ecmaVersion": 12
+	},
+	"plugins": ["react", "prettier"],
+	"rules": {
+		"prettier/prettier": [
+			1,
+			{
+				"singleQuote": true,
+				"trailingComma": "es5",
+				"jsxBracketSameLine": true,
+				"useTabs": true,
+				"endOfLine": "auto",
+				"jsxSingleQuote": true
+			}
+		],
+		"arrow-body-style": "off",
+		"spaced-comment": [2, "always"]
+	}
+}

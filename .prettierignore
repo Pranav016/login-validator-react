@@ -1,0 +1,10 @@
+*.ejs
+package*.json
+yarn.lock
+.all-contributorsrc
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+*.yml
+*.yaml
+.github
+README.md
