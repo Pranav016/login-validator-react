@@ -13,9 +13,21 @@ const Login = (props) => {
 
 	// we use useEffect here because adding variables to dependencies helps us track them and avoids repetition of code
 	useEffect(() => {
-		setFormIsValid(
-			enteredEmail.includes('@') && enteredPassword.trim().length > 6
-		);
+		const timer = setTimeout(() => {
+			console.log('Checking validity');
+			setFormIsValid(
+				enteredEmail.includes('@') && enteredPassword.trim().length > 6
+			);
+		}, 500);
+
+		return () => {
+			/* every time we type something a new timer is set and
+      it gets cleared as soon as we type a new character.
+      Thus validation is checked when we take a pause from typing.
+      This saves our valuable calls and processing power */
+			console.log('CleanUp');
+			clearTimeout(timer);
+		};
 	}, [enteredEmail, enteredPassword]);
 
 	const emailChangeHandler = (event) => {
@@ -77,10 +89,7 @@ const Login = (props) => {
 					/>
 				</div>
 				<div className={classes.actions}>
-					<Button
-						type='submit'
-						className={classes.btn}
-						disabled={!formIsValid}>
+					<Button type='submit' className={classes.btn} disabled={!formIsValid}>
 						Login
 					</Button>
 				</div>
