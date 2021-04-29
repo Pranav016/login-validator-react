@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
+import AuthContext from '../../context/auth-context';
 
 const emailReducer = (state, action) => {
 	if (action.type === 'USER_INPUT') {
@@ -32,6 +33,7 @@ const Login = (props) => {
 	// const [enteredPassword, setEnteredPassword] = useState('');
 	// const [passwordIsValid, setPasswordIsValid] = useState();
 	const [formIsValid, setFormIsValid] = useState(false);
+	const authCtx = useContext(AuthContext);
 
 	// const [state, dispatch] = useReducer(reducer, initialArg);
 	const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -52,7 +54,7 @@ const Login = (props) => {
 			console.log('Checking validity');
 			setFormIsValid(
 				// enteredEmail.includes('@') && enteredPassword.trim().length>6
-				emailState.isValid && passwordState.isValid
+				emailIsValid && passwordIsValid
 			);
 		}, 500);
 
@@ -93,7 +95,7 @@ const Login = (props) => {
 
 	const submitHandler = (event) => {
 		event.preventDefault();
-		props.onLogin(emailState.value, passwordState.value);
+		authCtx.onLogin(emailState.value, passwordState.value);
 	};
 
 	return (
@@ -128,10 +130,7 @@ const Login = (props) => {
 					/>
 				</div>
 				<div className={classes.actions}>
-					<Button
-						type='submit'
-						className={classes.btn}
-						disabled={!formIsValid}>
+					<Button type='submit' className={classes.btn} disabled={!formIsValid}>
 						Login
 					</Button>
 				</div>

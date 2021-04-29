@@ -21,7 +21,6 @@
 			}
 		],
 		"arrow-body-style": "off",
-		"spaced-comment": [2, "always"],
-		"react-hooks/exhaustive-deps": "off"
+		"spaced-comment": [2, "always"]
 	}
 }
